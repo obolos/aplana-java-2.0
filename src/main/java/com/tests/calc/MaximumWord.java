@@ -12,11 +12,8 @@ public class MaximumWord {
         count = new int[scanner.nextInt() + 1];
 
         System.out.println("Вводите слова");
-        for (int i = 0; i < count.length; i++)
-                    words.add(scanner.nextLine());
-        words.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
-
-        System.out.println("MaxWord is : " + words.get(words.size() - 1));
+        for (int i = 0; i < count.length; i++) words.add(scanner.nextLine());
+        System.out.println("MaxWord is : " + Collections.max(words, (s1, s2) -> Integer.compare(s1.length(), s2.length())));
 
     }
 
