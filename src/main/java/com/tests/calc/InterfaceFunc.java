@@ -20,7 +20,7 @@ public class InterfaceFunc {
         }
     }
 
-    private static void maximumWordStart() {
+    private static void maximumWordStart() throws Exception{
         MaximumWord mxw = new MaximumWord();
     }
 
