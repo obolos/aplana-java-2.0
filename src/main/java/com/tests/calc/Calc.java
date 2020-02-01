@@ -3,25 +3,42 @@ package com.tests.calc;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Calc {
+class Calc implements Tasks {
+    private static final String title = "1: Калькулятор";
 
-    private String [] operation = {"1: +", "2: -", "3: /", "4: *"};
-    private Scanner scanner = new Scanner(System.in);
-    private double x, y;
-    private int opr = 0;
+    public void run() {
+        for(;;) {
+            try {
+                calculateLogic();
+            } catch (Exception e) {
+                System.out.println("Неверный ввод");
+                System.exit(0);
 
-    public void calculateLogic() throws Exception {
+            }
+        }
+    }
+
+    private void calculateLogic() {
+        String [] operation = {"1: +", "2: -", "3: /", "4: *"};
+        Scanner scanner = new Scanner(System.in);
+        try {
         System.out.println("Введите число x");
-        x = scanner.nextDouble();
+        double x = scanner.nextDouble();
 
         System.out.println("Выберите операцию");
         Arrays.stream(operation).forEach(System.out::println);
-        opr = scanner.nextInt();
+        int opr = scanner.nextInt();
+            operation[opr-1].toString();
 
-        System.out.println("Введите число y");
-        y = scanner.nextDouble();
+            System.out.println("Введите число y");
+            double y = scanner.nextDouble();
 
-        System.out.println(operation(opr, x, y));
+            System.out.println(operation(opr, x, y));
+        }
+        catch (IndexOutOfBoundsException ex) {
+            System.out.println("Вы ввели не существующую операцию");
+            calculateLogic();
+        }
 
     }
 
@@ -44,4 +61,10 @@ public class Calc {
         }
     }
 
-}
+
+    @Override
+    public String toString() {
+        return title;
+    }
+
+   }

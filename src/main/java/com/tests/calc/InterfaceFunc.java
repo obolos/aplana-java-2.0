@@ -1,38 +1,35 @@
 package com.tests.calc;
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class InterfaceFunc {
+class InterfaceFunc implements CommonObject<Tasks> {
 
-    public static void start() throws Exception {
+    static Tasks [] menuItems = {new Calc(), new MaximumWord(), new RandomArrayNumbers()};
 
-        System.out.printf("Выберите приложение\n %s\n %s\n", "1: Калькулятор", "2: Поиск максимального слова");
-        Scanner scanner = new Scanner(System.in);
+    InterfaceFunc() throws Exception {
 
-        int num = scanner.nextInt();
-        if (num == 1)
-            calculatorStart();
-        else if (num == 2)
-            maximumWordStart();
-        else
-        {
-            System.out.println("Ta Ta for now!");
-            System.exit(0);
-        }
-    }
+            System.out.println("Выберите приложение");
+            Arrays.stream(menuItems).forEach(System.out::println);
+            Scanner scanner = new Scanner(System.in);
 
-    private static void maximumWordStart() throws Exception{
-        MaximumWord mxw = new MaximumWord();
-    }
-
-    private static void calculatorStart() {
-        Calc calc = new Calc();
-        for(;;) {
-            try {
-                calc.calculateLogic();
-            } catch (Exception e) {
-                System.out.println("Хорошего дня!");
+            int num = scanner.nextInt();
+            if (num == 1)
+                getInstance(new Calc());
+            else if (num == 2)
+                getInstance(new MaximumWord());
+            else if (num == 3)
+                getInstance(new RandomArrayNumbers());
+            else if (num == 9)
                 System.exit(0);
+            else {
+                System.out.println("Ta Ta for now!");
+                System.exit(0);
+
             }
         }
+
+    @Override
+    public void getInstance(Tasks instance) {
+            instance.run();
     }
 }
