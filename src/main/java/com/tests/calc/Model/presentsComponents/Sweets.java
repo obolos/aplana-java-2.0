@@ -1,17 +1,17 @@
-package com.tests.calc.Model;
+package com.tests.calc.Model.presentsComponents;
 
-public class CustomSweet {
-    private String name;
-    private double weight;
-    private int cost;
-    private String color;
+public class Sweets {
+    private String name = null;
+    private double weight = 0.00;
+    private int cost = 0;
+    private String color = null;
+
+    public Sweets(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public double getWeight() {
@@ -40,11 +40,9 @@ public class CustomSweet {
 
     @Override
     public String toString() {
-        return "CustomSweet{" +
-                "name='" + name + '\'' +
-                ", weight=" + weight +
-                ", cost=" + cost +
-                ", color='" + color + '\'' +
-                '}';
+        return  "Название: '" + name + '\'' +
+                ", \nвес: " + String.format("%.2f", weight) +"Kg"+
+                ", \nцена: " + cost +"$"+
+                ", \nцвет: " + color + "\n";
     }
 }

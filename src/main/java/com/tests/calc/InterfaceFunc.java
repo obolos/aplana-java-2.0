@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 class InterfaceFunc implements CommonObject<Tasks> {
 
-    static Tasks [] menuItems = {new Calc(), new MaximumWord(), new RandomArrayNumbers()};
+    static Tasks [] menuItems = {new Calc(), new MaximumWord(), new RandomArrayNumbers(), new SweetsShop()};
 
     InterfaceFunc() throws Exception {
 
@@ -19,8 +19,8 @@ class InterfaceFunc implements CommonObject<Tasks> {
                 getInstance(new MaximumWord());
             else if (num == 3)
                 getInstance(new RandomArrayNumbers());
-            else if (num == 9)
-                System.exit(0);
+            else if (num == 4)
+               getInstance(new SweetsShop());
             else {
                 System.out.println("Ta Ta for now!");
                 System.exit(0);
