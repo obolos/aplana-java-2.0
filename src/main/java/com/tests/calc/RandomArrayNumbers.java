@@ -17,15 +17,34 @@ class RandomArrayNumbers  implements Tasks {
 
         System.out.println("исходный массив");
         for (int a : numbers) System.out.print(a + " | ");
-        System.out.println("\nотсортированный массив");
-        Arrays.sort(numbers);
-        for (int a : numbers) System.out.print(a + " | ");
-        int tmp = numbers[0];
-        numbers[0] = numbers[numbers.length - 1];
-        numbers[numbers.length - 1] = tmp;
+
+        int minNegative = Arrays.stream(numbers).min().getAsInt();
+        int minPositive = Arrays.stream(numbers).filter(s-> s > 0).min().getAsInt();
+
+        int index1 = helperMethod(numbers, minNegative);
+        int index2 = helperMethod(numbers, minPositive);
+
+        switchReplace(numbers, index1, index2);
+
         System.out.println("\nрезультирующий массив");
         for (int a : numbers) System.out.print(a + " | ");
-        System.out.println("");
+        System.out.println("\nNumbers " + minNegative + " : " + minPositive);
+        }
+
+        private int helperMethod (int[] arr, int value) {
+            for (int i = 0; i < arr.length; i++)
+                if (arr[i] == value) {
+                    value = i;
+                    break;
+                }
+
+            return value;
+        }
+
+        private void switchReplace (int[] arr, int index1, int index2) {
+            int tmp = arr[index1];
+            arr[index1] = arr[index2];
+            arr[index2] = tmp;
         }
 
     @Override
