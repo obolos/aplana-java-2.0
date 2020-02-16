@@ -1,10 +1,10 @@
 package com.tests.calc.Model.presentsComponents;
 
-public class Sweets {
+public class Sweets<T> {
     private String name = null;
     private double weight = 0.00;
     private int cost = 0;
-    private String color = null;
+    private T property;
 
     public Sweets(String name) {
         this.name = name;
@@ -30,12 +30,12 @@ public class Sweets {
         this.cost = cost;
     }
 
-    public String getColor() {
-        return color;
+    public T getProperty() {
+        return property;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setProperty(T property) {
+        this.property = property;
     }
 
     @Override
@@ -43,6 +43,6 @@ public class Sweets {
         return  "Название: '" + name + '\'' +
                 ", \nвес: " + String.format("%.2f", weight) +"Kg"+
                 ", \nцена: " + cost +"$"+
-                ", \nцвет: " + color + "\n";
+                 "\nдень поставки: " + property + "\n";
     }
 }

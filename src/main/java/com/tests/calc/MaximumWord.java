@@ -14,7 +14,7 @@ class MaximumWord  implements Tasks {
             System.out.println("Вводите слова");
             ArrayList<String> words = new ArrayList<String>();
             for (int i = 0; i < count.length; i++) words.add(scanner.nextLine());
-            System.out.println("MaxWord is : " + Collections.max(words, (s1, s2) -> Integer.compare(s1.length(), s2.length())));
+            System.out.println("MaxWord is : " + Collections.max(words, Comparator.comparingInt(String::length)));
         }
 
     }

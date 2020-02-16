@@ -3,6 +3,8 @@ package com.tests.calc;
 import com.tests.calc.Model.presentsBySize.CheckList;
 import com.tests.calc.Model.presentsBySize.ChristmasPresent;
 import com.tests.calc.Model.presentsComponents.*;
+import com.tests.calc.candyShop.СookingDay;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,20 +17,34 @@ class SweetsFactory {
 
     SweetsFactory() {
         christmasPresent.setSweetsNames(CheckList.getSweetsNames());
-        createComponents(christmasPresent.getSweetsNames());
+        christmasPresent.addSweets(createComponents(christmasPresent.getSweetsNames()));
     }
 
-    void createComponents(String[] sweetsNames) {
+    List<Sweets> createComponents(String[] sweetsNames) {
         try {
+
            for (int i = 0; i < sweetsNames.length; i++) {
-               sweets.add(new Sweets(sweetsNames[i]));
-               sweets.get(i).setWeight(tlr.nextDouble(0.2, 3.3));
-               sweets.get(i).setCost(tlr.nextInt(3, 15));
-               sweets.get(i).setColor(color[tlr.nextInt(0, 4)]);
+              switch (sweetsNames[i]) {
+                  case "Cupcake":
+                       createSweets("Cupcake", СookingDay.MONDAY);
+                      break;
+                  case "Donut":
+                       createSweets("Donut", СookingDay.TUESDAY);
+                      break;
+                  case "Eclair":
+                      createSweets("Eclair", СookingDay.THURSDAY);
+                      break;
+                  case "Froyo":
+                      createSweets("Froyo", СookingDay.WEDNESDAY);
+                      break;
+                  default:
+                      createSweets(sweetsNames[i], СookingDay.FRIDAY);
+                      break;
+              }
            }
 
         } catch (Exception e) {e.printStackTrace();}
-        christmasPresent.addSweets(sweets);
+        return sweets;
     }
 
     void factoryShow() {
@@ -38,4 +54,12 @@ class SweetsFactory {
         christmasPresent.getSweets());
     }
 
+    void createSweets(String name, СookingDay day) {
+        Sweets<СookingDay> $ = new Sweets<СookingDay>(name);
+        $.setCost(tlr.nextInt(3, 15));
+        $.setWeight(tlr.nextDouble(0.2, 3.3));
+        $.setProperty(day);
+        sweets.add($);
+
+}
 }

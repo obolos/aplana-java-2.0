@@ -21,17 +21,17 @@ class RandomArrayNumbers  implements Tasks {
         int minNegative = Arrays.stream(numbers).min().getAsInt();
         int minPositive = Arrays.stream(numbers).filter(s-> s > 0).min().getAsInt();
 
-        int index1 = helperMethod(numbers, minNegative);
-        int index2 = helperMethod(numbers, minPositive);
+        int index1 = searchIndex(numbers, minNegative);
+        int index2 = searchIndex(numbers, minPositive);
 
-        switchReplace(numbers, index1, index2);
+        replaceElements(numbers, index1, index2);
 
         System.out.println("\nрезультирующий массив");
         for (int a : numbers) System.out.print(a + " | ");
         System.out.println("\nNumbers " + minNegative + " : " + minPositive);
         }
 
-        private int helperMethod (int[] arr, int value) {
+        private int searchIndex (int[] arr, int value) {
             for (int i = 0; i < arr.length; i++)
                 if (arr[i] == value) {
                     value = i;
@@ -41,7 +41,7 @@ class RandomArrayNumbers  implements Tasks {
             return value;
         }
 
-        private void switchReplace (int[] arr, int index1, int index2) {
+        private void replaceElements (int[] arr, int index1, int index2) {
             int tmp = arr[index1];
             arr[index1] = arr[index2];
             arr[index2] = tmp;
